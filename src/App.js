@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+const faqs = [
+  {
+    title: "Where are these chairs assembled?",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+  },
+  {
+    title: "How long do I have to return my chair?",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+  },
+  {
+    title: "Do you ship to countries outside the EU?",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+  },
 
-function App() {
+]
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Accordion data={faqs}/>
+      
     </div>
   );
 }
 
-export default App;
+function Accordion({data}){
+return(
+  <div className="accordion">
+    {data.map((el,i )=> <AccordionItem title={el.title} text={el.text} num={i}/>)}
+    
+  </div>
+)
+}
+
+function AccordionItem({num,title,text}){
+return(
+  <div className="item">
+    <p className="number">{num < 9 ? `0${num + 1}` : num + 1}</p>
+    <p className="text">{title}</p>
+    <p className="icon">-</p>
+    <div className="content-box">{text}</div>
+  </div>
+)
+}
+
+
+
+
